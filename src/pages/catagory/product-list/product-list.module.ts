@@ -5,8 +5,6 @@ import { ProductItemComponent } from '../../../components/product-item/product-i
 
 @NgModule({
   declarations: [
-    ProductListPage,
-    ProductItemComponent
   ],
   imports: [
     IonicPageModule.forChild(ProductListPage),
