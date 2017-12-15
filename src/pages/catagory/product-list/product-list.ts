@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
-import { Product } from '../../models/product';
-import { NewProductPage } from '../new-product/new-product';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ProductItemComponent } from '../../../components/product-item/product-item';
+import { Product } from '../../../models/product';
 
+/**
+ * Generated class for the ProductListPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-product-list',
+  templateUrl: 'product-list.html'
 })
-export class HomePage {
+export class ProductListPage {
 
   products: Product[] = [
     {
@@ -42,16 +50,11 @@ export class HomePage {
     }
   ];
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  addNewProduct(){
-    let profileModal = this.modalCtrl.create(NewProductPage);
-    profileModal.onDidDismiss(data => {
-      console.log(data);
-    });
-    profileModal.present();
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ProductListPage');
   }
 
 }

@@ -15,6 +15,12 @@ import { AuthProvider } from '../providers/auth/auth';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { CatagoryPage } from '../pages/catagory/catagory';
+import { ProductListPage } from '../pages/catagory/product-list/product-list';
+import { ProductItemComponent } from '../components/product-item/product-item';
+import { ProductListComponent } from '../components/product-list/product-list';
+import { NewProductPage } from '../pages/new-product/new-product';
+import { ProductProvider } from '../providers/product/product';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,12 @@ import { RegisterPage } from '../pages/register/register';
     HomePage,
     ListPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    CatagoryPage,
+    ProductListPage,
+    ProductItemComponent,
+    ProductListComponent,
+    NewProductPage
   ],
   imports: [
     BrowserModule,
@@ -37,13 +48,19 @@ import { RegisterPage } from '../pages/register/register';
     HomePage,
     ListPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    CatagoryPage,
+    ProductListPage,
+    ProductItemComponent,
+    ProductListComponent,
+    NewProductPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    ProductProvider
   ]
 })
 export class AppModule {}

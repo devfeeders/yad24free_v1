@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
+import { CatagoryPage } from '../pages/catagory/catagory';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,9 +27,10 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage, action: 'openPage' },
-      { title: 'List', component: ListPage, action: 'openPage' },
-      { title: 'Logout', component: ListPage, action: 'logout' }
+      { title: 'ראשי', component: HomePage, action: 'openPage' },
+      { title: 'קטגוריות', component: CatagoryPage, action: 'openPage' },
+      { title: 'רשימה', component: ListPage, action: 'openPage' },
+      { title: 'יציאה', component: ListPage, action: 'logout' }
     ];
   }
 

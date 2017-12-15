@@ -1,18 +1,25 @@
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
+<ion-menu side="right" [content]="content">
+  <ion-header side="right">
+    <!-- <ion-toolbar text-center>
       <ion-title>Menu</ion-title>
-    </ion-toolbar>
+    </ion-toolbar> -->
+    <ion-item>
+        <ion-avatar >
+          <img class="avatar" style="width: 120px; height: 120px;" src="https://wordsmith.org/words/images/avatar2_large.png">
+        </ion-avatar>
+    </ion-item>
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="runAction(p)">
+      <button text-right menuClose ion-item *ngFor="let p of pages" (click)="runAction(p)">
         {{p.title}}
       </button>
     </ion-list>
   </ion-content>
-
+  <ion-footer>
+    <button ion-button>Exit</button>
+  </ion-footer>
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

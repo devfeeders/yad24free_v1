@@ -1,0 +1,26 @@
+<ion-card>
+    <ion-item text-right>
+        <ion-avatar item-end>
+          <img src="https://wordsmith.org/words/images/avatar2_large.png">
+        </ion-avatar>
+        <h2>Marty McFly</h2>
+        <p>November 5, 1955</p>
+    </ion-item>
+    <img src="{{ product.imageURL }}"/>
+    <ion-card-content text-right>
+      <p>{{ product.description }}</p>
+    </ion-card-content>
+    <ion-row>
+        <ion-col center text-center>
+            <button ion-button icon-right clear >
+                <div>{{ product.price }}</div>
+            </button>
+        </ion-col>
+        <ion-col>          
+          <button ion-button icon-right clear (click)="incrementLikes()">
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{ product.likes }} Likes</div>
+          </button>
+        </ion-col>        
+      </ion-row>
+  </ion-card>

@@ -1,13 +1,9 @@
-import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Product } from '../../models/product';
-import { NewProductPage } from '../new-product/new-product';
 
-@Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
-})
-export class HomePage {
+@Injectable()
+export class ProductProvider {
 
   products: Product[] = [
     {
@@ -42,16 +38,24 @@ export class HomePage {
     }
   ];
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-
+  constructor(public http: HttpClient) {
+    console.log('Hello ProductProvider Provider');
   }
 
-  addNewProduct(){
-    let profileModal = this.modalCtrl.create(NewProductPage);
-    profileModal.onDidDismiss(data => {
-      console.log(data);
-    });
-    profileModal.present();
+  addNewProduct(product: Product){
+    this.products.push(product);
   }
+
+  getAllProducts(){
+    return this.products;
+  }
+
+  getProductsByCatagory(Catagory: string){}
+
+  removeProduct(key: string){}
+
+  updateProduct(oldeProduct: Product, newProduct: Product){}
+
+  searchProduct(text: string){}
 
 }

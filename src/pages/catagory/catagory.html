@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle right>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>קטגוריות</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <ion-item text-right *ngFor="let catagory of catagories" (click)="viewCatagory(catagory.name)">
+          <ion-icon name="{{ catagory.icon }}" item-end></ion-icon>
+            {{ catagory.displyName }}
+          <ion-icon name="md-arrow-dropright" item-start></ion-icon>
+        </ion-item>
+      </ion-list>
+</ion-content>
