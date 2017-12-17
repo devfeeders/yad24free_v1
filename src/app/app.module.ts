@@ -21,6 +21,7 @@ import { ProductItemComponent } from '../components/product-item/product-item';
 import { ProductListComponent } from '../components/product-list/product-list';
 import { NewProductPage } from '../pages/new-product/new-product';
 import { ProductProvider } from '../providers/product/product';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ProductProvider } from '../providers/product/product';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    ProductProvider
+    ProductProvider,
+    Camera
   ]
 })
 export class AppModule {}

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 /*
   Generated class for the AuthProvider provider.
@@ -33,6 +34,10 @@ export class AuthProvider {
       return error;
     }
     
+  }
+
+  firebaseLoginWithGoogle(){
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
   getFirebaseAuthStatus(){

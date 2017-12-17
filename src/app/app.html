@@ -5,8 +5,9 @@
     </ion-toolbar> -->
     <ion-item>
         <ion-avatar >
-          <img class="avatar" style="width: 120px; height: 120px;" src="https://wordsmith.org/words/images/avatar2_large.png">
+          <img class="avatar" style="width: 120px; height: 120px;" [src]="userProfile.photoURL">          
         </ion-avatar>
+        <h3 text-center>{{ userProfile.displayName }}</h3>
     </ion-item>
   </ion-header>
 

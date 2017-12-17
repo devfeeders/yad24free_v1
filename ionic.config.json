@@ -1,6 +1,6 @@
 {
   "name": "yad24free_v1",
-  "app_id": "",
+  "app_id": "13c70982",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
 import { CatagoryPage } from '../pages/catagory/catagory';
+import { UserProfile } from '../models/userProfile';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,6 +20,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any, action: string}>;
   action: string = "logout";
+  userProfile = {} as UserProfile;
 
   constructor(public platform: Platform, 
     private authProvider: AuthProvider,
@@ -44,6 +46,9 @@ export class MyApp {
       this.authProvider.getFirebaseAuthStatus().subscribe( data => {
         console.log("data: " + JSON.stringify(data));
         if(data && data.uid){
+          this.userProfile.email = data.email;
+          this.userProfile.displayName = data.displayName;
+          this.userProfile.photoURL = data.photoURL || 'https://wordsmith.org/words/images/avatar2_large.png';
           this.rootPage = HomePage;
         }else{
           this.nav.setRoot(LoginPage);
@@ -75,7 +80,7 @@ export class MyApp {
       case 'openPage':
         this.openPage(item);
         break;
-      case 'Logout':
+      case 'logout':
         this.logout();
         break;
       default:

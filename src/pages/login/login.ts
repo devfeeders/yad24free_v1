@@ -51,6 +51,17 @@ export class LoginPage {
         console.log("error: " + error);
       });
     }
+
+    loginWithGoogle(){
+      this.authProvider.firebaseLoginWithGoogle()
+      .then(
+        (response) => { 
+          console.log("logged in with google");
+          this.navCtrl.setRoot(HomePage);
+         },
+        (error) => { console.log("failed to login with google"); }
+      )
+    }
   
     goToRegisterPage(){
       this.navCtrl.push(RegisterPage);
