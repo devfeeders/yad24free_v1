@@ -4,6 +4,7 @@ import { User } from '../../models/user';
 import { AuthProvider } from '../../providers/auth/auth';
 import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 /**
  * Generated class for the LoginPage page.
@@ -22,6 +23,7 @@ export class LoginPage {
   user = {} as User;
   
     constructor(private authProvider: AuthProvider,
+      private googlePlus: GooglePlus,
       public navCtrl: NavController, public navParams: NavParams,) {
     }
   
@@ -56,12 +58,23 @@ export class LoginPage {
       this.authProvider.firebaseLoginWithGoogle()
       .then(
         (response) => { 
-          console.log("logged in with google");
-          this.navCtrl.setRoot(HomePage);
-         },
-        (error) => { console.log("failed to login with google"); }
+                 console.log("logged in with google");
+                 this.navCtrl.setRoot(HomePage);
+        },
+        (error) => { console.log("failed to login with google " + error); }
       )
     }
+
+    // loginWithGoogle(){
+    //   this.authProvider.firebaseLoginWithGoogle()
+    //   .then(
+    //     (response) => { 
+    //       console.log("logged in with google");
+    //       this.navCtrl.setRoot(HomePage);
+    //      },
+    //     (error) => { console.log("failed to login with google"); }
+    //   )
+    // }
   
     goToRegisterPage(){
       this.navCtrl.push(RegisterPage);

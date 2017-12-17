@@ -22,6 +22,7 @@ import { ProductListComponent } from '../components/product-list/product-list';
 import { NewProductPage } from '../pages/new-product/new-product';
 import { ProductProvider } from '../providers/product/product';
 import { Camera } from '@ionic-native/camera';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { Camera } from '@ionic-native/camera';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     ProductProvider,
-    Camera
+    Camera,
+    GooglePlus
   ]
 })
 export class AppModule {}
