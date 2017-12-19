@@ -22,19 +22,19 @@
           </ion-item>
           <ion-item>
             <ion-label floating text-right>הסבר על המוצר</ion-label>
-            <ion-input type="text" text-right></ion-input>
+            <ion-input type="text" text-right [(ngModel)]="product.description"></ion-input>
           </ion-item>
         
           <ion-item>
             <ion-label floating text-right>מחיר</ion-label>
-            <ion-input type="text" text-right></ion-input>
+            <ion-input type="text" text-right [(ngModel)]="product.price"></ion-input>
           </ion-item>
         
         </ion-list>
 </ion-content>
 
 <ion-footer text-center>
-    <button ion-button icon-right full large (click)="closeModalWithData(product)">
+    <button ion-button icon-right full large (click)="addProduct(product)">
         &nbsp;הוסף מוצר&nbsp;
       <ion-icon name="add"></ion-icon>        
     </button>

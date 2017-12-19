@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { Product } from '../../models/product';
 
 import {Camera} from '@ionic-native/camera';
+import { ProductProvider } from '../../providers/product/product';
 
 /**
  * Generated class for the NewProductPage page.
@@ -20,8 +21,10 @@ export class NewProductPage {
 
   product = {} as Product;
   public base64Image: string;
+  private imageData: string;
 
   constructor(public camera: Camera,
+    private productProvider: ProductProvider,
     public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
   }
 
@@ -39,14 +42,32 @@ export class NewProductPage {
   takePicture(){
     this.camera.getPicture({
         destinationType: this.camera.DestinationType.DATA_URL,
-        targetWidth: 1000,
-        targetHeight: 1000
+        targetWidth: 1024,
+        targetHeight: 764
     }).then((imageData) => {
       // imageData is a base64 encoded string
         this.base64Image = "data:image/jpeg;base64," + imageData;
+        this.imageData = imageData;
+        //console.log("image data: " + imageData);
     }, (err) => {
         console.log(err);
     });
+  }
+
+  addProduct(product: Product){
+    this.productProvider.uploadProductImage(this.imageData).then(snapshot =>{
+      product.imageURL = snapshot.downloadURL;
+      product.likes = 0;
+      product.createdAt = new Date();
+      product.lastUpdateDate = new Date();
+      product.status = "new";
+      product.price = product.price || 'free';
+      //product.imageURL = "https://imgfave.azureedge.net/image_cache/1368490246751275.jpg"
+      this.productProvider.addNewProduct(product);
+    },
+  (error)=>{
+    console.log("failed to upload!");
+  });
   }
 
 }
