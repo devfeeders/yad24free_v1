@@ -42,13 +42,9 @@ export class AuthProvider {
   async firebaseLoginWithGoogle(){
     
     return this.googlePlus.login({
-      'webclientId': '36554966660-j73urh1qcolsm5nvcjeo9b6cc0qmkp3t.apps.googleusercontent.com',
+      'webClientId': '159558064361-eklqsbj4eesuahmm02ltav9r8n4d0m21.apps.googleusercontent.com',
       'offline': true
-    }).then( res =>{
-      return firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken));
-    }, (error) =>{
-      console.log("firebaseLoginWithGoogle: googlePlus fialed to login, error: "+ error);
-    })
+    });
     //return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 

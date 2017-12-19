@@ -40,31 +40,20 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
+      //this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      var currentUser = this.authProvider.getFirebaseCurrentUser();
-      console.log("current user: " + currentUser);
-      if(currentUser){
-        this.userProfile.email = currentUser.email;
-        this.userProfile.displayName = currentUser.displayName;
-        this.userProfile.photoURL = currentUser.photoURL || 'https://wordsmith.org/words/images/avatar2_large.png';
-        this.rootPage = HomePage;
-      }else{
-        this.nav.setRoot(LoginPage);
-      }
-
-      // this.authProvider.getFirebaseAuthStatus().subscribe( data => {
-      //   console.log("data: " + JSON.stringify(data));
-      //   if(data && data.uid){
-      //     this.userProfile.email = data.email;
-      //     this.userProfile.displayName = data.displayName;
-      //     this.userProfile.photoURL = data.photoURL || 'https://wordsmith.org/words/images/avatar2_large.png';
-      //     this.rootPage = HomePage;
-      //   }else{
-      //     this.nav.setRoot(LoginPage);
-      //   }
-      // }); 
+      this.authProvider.getFirebaseAuthStatus().subscribe( data => {
+        console.log("data: " + JSON.stringify(data));
+        if(data && data.uid){
+          this.userProfile.email = data.email;
+          this.userProfile.displayName = data.displayName;
+          this.userProfile.photoURL = data.photoURL || 'https://wordsmith.org/words/images/avatar2_large.png';
+          this.rootPage = HomePage;
+        }else{
+          this.nav.setRoot(LoginPage);
+        }
+      }); 
     });
   }
 
