@@ -1,5 +1,4 @@
-import { User } from "./user";
-
+import { UserProfile } from "./userProfile";
 
 export interface Product{
     id: string;
@@ -10,4 +9,5 @@ export interface Product{
     createdAt: Date;
     lastUpdateDate: Date;
     status: string;
+    createdBy: UserProfile;
 }

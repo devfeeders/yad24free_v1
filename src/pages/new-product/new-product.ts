@@ -4,6 +4,9 @@ import { Product } from '../../models/product';
 
 import {Camera} from '@ionic-native/camera';
 import { ProductProvider } from '../../providers/product/product';
+import * as firebase from 'firebase';
+import { User } from "firebase";
+import { UserProfile } from '../../models/userProfile';
 
 /**
  * Generated class for the NewProductPage page.
@@ -56,14 +59,23 @@ export class NewProductPage {
 
   addProduct(product: Product){
     this.productProvider.uploadProductImage(this.imageData).then(snapshot =>{
+      let currentUser = firebase.auth().currentUser;
+      console.log("firebase user: " + JSON.stringify(currentUser));
+      let userProfile = {} as UserProfile;
+      userProfile.displayName = currentUser.displayName;
+      userProfile.photoURL = currentUser.photoURL;
+      userProfile.email = currentUser.email;
+      product.createdBy = userProfile;
       product.imageURL = snapshot.downloadURL;
       product.likes = 0;
       product.createdAt = new Date();
+      console.log("Date: " + product.createdAt);
       product.lastUpdateDate = new Date();
       product.status = "new";
       product.price = product.price || 'free';
       //product.imageURL = "https://imgfave.azureedge.net/image_cache/1368490246751275.jpg"
       this.productProvider.addNewProduct(product);
+      this.viewCtrl.dismiss();
     },
   (error)=>{
     console.log("failed to upload!");

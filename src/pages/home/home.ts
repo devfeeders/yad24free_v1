@@ -3,12 +3,16 @@ import { NavController, ModalController } from 'ionic-angular';
 import { Product } from '../../models/product';
 import { NewProductPage } from '../new-product/new-product';
 import { ProductProvider } from '../../providers/product/product';
+import { AuthProvider } from '../../providers/auth/auth';
+import { LoginPage } from '../login/login';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  productsSubscription: Subscription;
 
   // products: Product[] = [
   //   {
@@ -44,11 +48,17 @@ export class HomePage {
   // ];
   products: Product[] = [];
 
+
   constructor(
     private productProvider: ProductProvider,
+    private authProvider: AuthProvider,
     public navCtrl: NavController, 
     public modalCtrl: ModalController) {
-      productProvider.getAllProducts().subscribe( data => {
+      let user = this.authProvider.getFirebaseCurrentUser();
+      if(!user){
+        this.navCtrl.setRoot(LoginPage);
+      }
+      this.productsSubscription = productProvider.getAllProducts().subscribe( data => {
         this.products = data;
         console.log("home data: " + JSON.stringify(this.products));
       });
@@ -60,6 +70,10 @@ export class HomePage {
       console.log(data);
     });
     profileModal.present();
+  }
+
+  ionViewWillLeave(){
+    this.productsSubscription.unsubscribe();
   }
 
 }

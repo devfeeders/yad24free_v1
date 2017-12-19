@@ -45,7 +45,7 @@ export class MyApp {
 
       this.authProvider.getFirebaseAuthStatus().subscribe( data => {
         console.log("data: " + JSON.stringify(data));
-        if(data && data.uid){
+        if(data){
           this.userProfile.email = data.email;
           this.userProfile.displayName = data.displayName;
           this.userProfile.photoURL = data.photoURL || 'https://wordsmith.org/words/images/avatar2_large.png';

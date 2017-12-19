@@ -1,10 +1,10 @@
 <ion-card>
     <ion-item text-right>
         <ion-avatar item-end>
-          <img src="https://wordsmith.org/words/images/avatar2_large.png">
+          <img [src]="product.createdBy.photoURL">
         </ion-avatar>
-        <h2>Marty McFly</h2>
-        <p>November 5, 1955</p>
+        <h2>{{ product.createdBy.displayName}}</h2>
+        <p>{{ product.createdAt }}</p>
     </ion-item>
     <img src="{{ product.imageURL }}"/>
     <ion-card-content text-right>

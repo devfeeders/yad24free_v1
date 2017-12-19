@@ -4,6 +4,8 @@ import { NavController, App } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { ProductProvider } from '../product/product';
 
 /*
   Generated class for the AuthProvider provider.
@@ -18,6 +20,7 @@ export class AuthProvider {
   
   constructor(public app: App,
     private googlePlus: GooglePlus,
+    private productProvider: ProductProvider,
     private afAuth: AngularFireAuth) {
     console.log('Hello AuthProvider Provider');
     this.navCtrl = app.getActiveNav();
@@ -57,13 +60,8 @@ export class AuthProvider {
     return this.afAuth.authState;
   }
 
-  async firebaseLogout(){
-    try {
-      //return this.afAuth.auth.signOut();
-      return firebase.auth().signOut();
-    } catch (error) {
-      return error;
-    }    
+  firebaseLogout(){
+      return this.afAuth.auth.signOut();
   }
 
 }
